@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\UGUR\Source\Repos\CRUDOperations\CRUDOperations\CRUDOperations.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+    <PackageReference Include="ClosedXML.Extensions.Mvc" Version="0.3.0" />
+    <PackageReference Include="FluentValidation" Version="9.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CRUDOperations.Core\CRUDOperations.Core.csproj" />
+    <ProjectReference Include="..\CRUDOperations.Data\CRUDOperations.Data.csproj" />
+    <ProjectReference Include="..\CRUDOperations.Services\CRUDOperations.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>

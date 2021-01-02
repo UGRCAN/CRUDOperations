@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CRUDOperations.Api</name>
+    </assembly>
+    <members>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.GetAllProducts">
+            <summary>
+            Gets all products
+            </summary>
+            <returns>Product objects</returns>
+        </member>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.GetProductById(System.Int32)">
+            <summary>
+            gets products by param id 
+            </summary>
+            <param name="id" example="3"></param>
+            <returns>Product object</returns>
+        </member>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.CreateProduct(CRUDOperations.Api.DTO.ProductDTO)">
+            <summary>
+            Creates new product 
+            </summary>
+            <remarks></remarks>
+            <param name="id" example="123">The product id</param>
+            <response code="200">Product created</response>
+            <response code="400">Product has missing/invalid values</response>
+            <response code="500">Oops! Can't create your product right now</response>
+        </member>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.UpdateProduct(System.Int32,CRUDOperations.Api.DTO.ProductDTO)">
+            <summary>
+            Updates product by id
+            </summary>
+            <param name="id"></param>
+            <param name="saveProductResource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.DeleteProduct(System.Int32)">
+            <summary>
+            Deletes product by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CRUDOperations.Api.Controllers.ProductController.ExportToExcel(System.String)">
+            <summary>
+            Exports products to Excel 
+            </summary>
+            <remarks></remarks>
+            <param name="name" example="export">Export event</param>
+            <response code="200">Returns Excel file</response>
+        </member>
+        <member name="M:CRUDOperations.Api.Validators.SaveProductValidator.#ctor(CRUDOperations.Services.Services.IProductService)">
+            <summary>
+            Validates create product and update product process
+            </summary>
+            <param name="productService"></param>
+        </member>
+        <member name="M:CRUDOperations.Api.Validators.SaveProductValidator.IsUnique(CRUDOperations.Api.DTO.ProductDTO,System.String)">
+            <summary>
+            Checks new product record or updated product code is unique or not
+            </summary>
+            <param name="product"></param>
+            <param name="code"></param>
+            <returns>true, false</returns>
+        </member>
+    </members>
+</doc>
