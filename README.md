@@ -73,9 +73,15 @@ Enter to browser : https://localhost:5001/index.html for Swagger UI, you will se
 
   The Unit Of Work design pattern is a design pattern that prevents every action related to the database from being reflected on the database instantaneously in our software application and accordingly allows all actions to be accumulated and performed over a single connection at a time, thus minimizing database costs.
   
-  ## Layers
+## Layers
   1. Api
   2. Data
   3. Core
   4. Service
+## Issues
+Photo property keeps only string data. Photo property will be change for saving image media.
+  
+## Will be Added
+* Photo property
+* Authentication
 
