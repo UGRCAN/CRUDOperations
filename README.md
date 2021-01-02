@@ -84,4 +84,5 @@ Photo property keeps only string data. Photo property will be change for saving 
 ## Will be Added
 * Photo property
 * Authentication
+* Unit testing and integration testing 
 
