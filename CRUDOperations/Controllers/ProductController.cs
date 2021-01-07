@@ -24,10 +24,12 @@ namespace CRUDOperations.Api.Controllers
     {
         private IProductService _productService;
         private readonly IMapper _mapper;
-        public ProductController(IProductService productService, IMapper mapper)
+        private SaveProductValidator _validator;
+        public ProductController(IProductService productService, IMapper mapper, SaveProductValidator validator)
         {
             _productService = productService;
             _mapper = mapper;
+            _validator = validator;
         }
         // GET: api/<ProductController>
         /// <summary>
@@ -35,7 +37,7 @@ namespace CRUDOperations.Api.Controllers
         /// </summary>
         /// <returns>Product objects</returns>
         [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Products>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProducts()
         {
             try
             {
@@ -76,7 +78,7 @@ namespace CRUDOperations.Api.Controllers
             
             
         }
-
+        
         // POST: api/<ProductController>
         /// <summary>
         /// Creates new product 
@@ -127,8 +129,8 @@ namespace CRUDOperations.Api.Controllers
         {
             try
             {
-                var validator = new SaveProductValidator(_productService);
-                var validationResult = await validator.ValidateAsync(saveProductResource);
+                
+                var validationResult = await _validator.ValidateAsync(saveProductResource);
 
                 var requestIsInvalid = id == 0 || !validationResult.IsValid;
 

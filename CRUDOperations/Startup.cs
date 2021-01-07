@@ -1,5 +1,6 @@
 using System.IO;
 using AutoMapper;
+using CRUDOperations.Api.Validators;
 using CRUDOperations.Core;
 using CRUDOperations.Data;
 using CRUDOperations.Services.Services;
@@ -35,6 +36,7 @@ namespace CRUDOperations.Api
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "CRUDOperations.Api.xml");
                 options.IncludeXmlComments(filePath);
             });
+            services.AddScoped<SaveProductValidator>();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
         }

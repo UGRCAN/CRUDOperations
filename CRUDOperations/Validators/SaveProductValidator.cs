@@ -33,7 +33,7 @@ namespace CRUDOperations.Api.Validators
         /// <param name="product"></param>
         /// <param name="code"></param>
         /// <returns>true, false</returns>
-        public bool IsUnique(ProductDTO product, string code)
+        private bool IsUnique(ProductDTO product, string code)
         {
            var foundProduct = _productService.GetAllProducts().Result.FirstOrDefault(x => x.Code == code);
            return foundProduct == null;
