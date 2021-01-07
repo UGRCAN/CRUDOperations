@@ -39,16 +39,11 @@ namespace CRUDOperations.Api.Controllers
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProducts()
         {
-            try
-            {
+            
                 var products = await _productService.GetAllProducts();
                 var mappedProducts = _mapper.Map<IEnumerable<Products>, IEnumerable<ProductDTO>>(products);
                 return Ok(mappedProducts);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
+            
             
         }
 
@@ -61,29 +56,27 @@ namespace CRUDOperations.Api.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
-            try
-            {
+
+            
                 var product = await _productService.GetProductById(id);
                 if (product == null) return NotFound();
 
                 var mappedProduct = _mapper.Map<Products, ProductDTO>(product);
                 return Ok(mappedProduct);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+            
+            
                 
             
             
             
         }
-        
+
         // POST: api/<ProductController>
         /// <summary>
         /// Creates new product 
         /// </summary>
         /// <remarks></remarks>
+        /// <param name="productDto"></param>
         /// <param name="id" example="123">The product id</param>
         /// <response code="200">Product created</response>
         /// <response code="400">Product has missing/invalid values</response>
@@ -91,8 +84,7 @@ namespace CRUDOperations.Api.Controllers
         [HttpPost("")]
         public async Task<ActionResult<ProductDTO>> CreateProduct([FromBody] ProductDTO productDto)
         {
-            try
-            {
+            
                 var validator = new SaveProductValidator(_productService);
                 var validationResult = await validator.ValidateAsync(productDto);
 
@@ -110,11 +102,8 @@ namespace CRUDOperations.Api.Controllers
                 var productResource = _mapper.Map<Products, ProductDTO>(product);
 
                 return Ok(productResource);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+            
+            
             
         }
         //POST: api/<ProductController/export
@@ -127,8 +116,7 @@ namespace CRUDOperations.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductDTO>> UpdateProduct(int id, [FromBody] ProductDTO saveProductResource)
         {
-            try
-            {
+           
                 
                 var validationResult = await _validator.ValidateAsync(saveProductResource);
 
@@ -150,11 +138,7 @@ namespace CRUDOperations.Api.Controllers
                 var updatedProductResource = _mapper.Map<Products, ProductDTO>(updatedProduct);
 
                 return Ok(updatedProductResource);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+           
             
         }
 
@@ -166,8 +150,7 @@ namespace CRUDOperations.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            try
-            {
+            
                 if (id == 0)
                     return BadRequest();
 
@@ -179,11 +162,7 @@ namespace CRUDOperations.Api.Controllers
                 await _productService.DeleteProduct(product);
 
                 return NoContent();
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+           
             
         }
 
@@ -199,19 +178,14 @@ namespace CRUDOperations.Api.Controllers
         [Route("{name}")]
         public async Task<IActionResult> ExportToExcel(string name)
         {
-            try
-            {
+            
                 if (name != "export") return BadRequest("invalid URL. To export URL: api/product/export");
 
 
                 string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string fileName = "products.xlsx";
                 return File(SetExcel(), contentType, fileName);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+            
            
         }
 

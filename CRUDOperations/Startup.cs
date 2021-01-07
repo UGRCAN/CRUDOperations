@@ -1,5 +1,6 @@
 using System.IO;
 using AutoMapper;
+using CRUDOperations.Api.Helpers;
 using CRUDOperations.Api.Validators;
 using CRUDOperations.Core;
 using CRUDOperations.Data;
@@ -53,6 +54,12 @@ namespace CRUDOperations.Api
                 c.RoutePrefix = "";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CRUD Operations V1");
             });
+
+            app.UseExceptionHandler(new ExceptionHandlerOptions
+                {
+                    ExceptionHandler = new JsonExceptionMiddleware().Invoke
+                }
+            );
             app.UseHttpsRedirection();
 
             app.UseRouting();
