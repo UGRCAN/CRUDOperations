@@ -57,7 +57,7 @@ namespace CRUDOperations.Api.Controllers
         /// <param name="id" example="3"></param>
         /// <returns>Product object</returns>
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Products>> GetProductById(int id)
+        public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
             
                 var product = await _productService.GetProductById(id);
